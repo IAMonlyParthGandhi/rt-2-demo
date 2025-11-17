@@ -1,5 +1,6 @@
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
+import { cn } from "@/lib/utils";
 
 interface ActionSliderProps {
   label: string;
@@ -24,12 +25,11 @@ export function ActionSlider({
   max,
   step,
   unit,
-  colorClass,
   borderColorClass,
   bgColorClass,
 }: ActionSliderProps) {
   return (
-    <div className={`p-4 rounded-lg border-2 ${borderColorClass} ${bgColorClass}`}>
+    <div className={cn("p-4 rounded-lg border-2", borderColorClass, bgColorClass)}>
       <div className="flex justify-between mb-2">
         <div>
           <span className="text-sm font-medium">{label}</span>
@@ -45,7 +45,6 @@ export function ActionSlider({
         min={min}
         max={max}
         step={step}
-        className={`[&_[role=slider]]:${colorClass}`}
       />
     </div>
   );
