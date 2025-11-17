@@ -44,16 +44,24 @@ const schema = defineSchema(
     // Tokenization examples table
     tokenization: defineTable({
       action: v.object({
+        terminate: v.number(),
         x: v.number(),
         y: v.number(),
         z: v.number(),
+        rx: v.number(),
+        ry: v.number(),
+        rz: v.number(),
         gripper: v.number(),
       }),
       tokens: v.array(v.number()),
       bins: v.object({
+        terminate: v.number(),
         x: v.number(),
         y: v.number(),
         z: v.number(),
+        rx: v.number(),
+        ry: v.number(),
+        rz: v.number(),
         gripper: v.number(),
       }),
       timestamp: v.number(),
