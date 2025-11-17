@@ -17,7 +17,8 @@ type UserResult = {
 
 // Wrapper to break type inference
 function useCurrentUser(): UserResult {
-  return useQuery(api.users.currentUser) as any;
+  // @ts-ignore - Bypass deep type instantiation error from Convex 1.29.1
+  return useQuery(api.users.currentUser);
 }
 
 export function useAuth() {
@@ -27,7 +28,7 @@ export function useAuth() {
 
   const [isLoading, setIsLoading] = useState(true);
 
-  // This effect updates the loading state once auth is loaded and user data is available
+  // This effect updates the loading state once auth is loaded and user data are available
   // It ensures we only show content when both authentication state and user data are ready
   useEffect(() => {
     if (!isAuthLoading && rawUser !== undefined) {
