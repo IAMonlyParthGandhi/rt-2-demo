@@ -1,7 +1,6 @@
-/* DO NOT CHANGE */
 @import "tailwindcss";
 @import "tw-animate-css";
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+/* DO NOT CHANGE */
 @custom-variant dark (&:is(.dark *));
 
 /* DO NOT CHANGE */

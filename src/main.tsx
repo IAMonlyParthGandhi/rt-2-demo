@@ -11,10 +11,11 @@ import "./index.css";
 import Landing from "./pages/Landing.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import "./types/global.d.ts";
+import { CONVEX_URL, HAS_CONVEX_BACKEND } from "@/lib/config";
 
-const convex = new ConvexReactClient(import.meta.env.VITE_CONVEX_URL as string);
-
-
+const convex = HAS_CONVEX_BACKEND
+  ? new ConvexReactClient(CONVEX_URL as string)
+  : null;
 
 function RouteSyncer() {
   const location = useLocation();
@@ -39,22 +40,41 @@ function RouteSyncer() {
   return null;
 }
 
+function AppRouter() {
+  return (
+    <BrowserRouter>
+      <RouteSyncer />
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/auth" element={<AuthPage redirectAfterAuth="/" />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
 
-createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <VlyToolbar />
-    <InstrumentationProvider>
-      <ConvexAuthProvider client={convex}>
-        <BrowserRouter>
-          <RouteSyncer />
-          <Routes>
-            <Route path="/" element={<Landing />} />
-            <Route path="/auth" element={<AuthPage redirectAfterAuth="/" />} /> {/* TODO: change redirect after auth to correct page */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
+function AppProviders() {
+  return (
+    <StrictMode>
+      <VlyToolbar />
+      <InstrumentationProvider>
+        {convex ? (
+          <ConvexAuthProvider client={convex}>
+            <AppRouter />
+          </ConvexAuthProvider>
+        ) : (
+          <AppRouter />
+        )}
         <Toaster />
-      </ConvexAuthProvider>
-    </InstrumentationProvider>
-  </StrictMode>,
-);
+      </InstrumentationProvider>
+    </StrictMode>
+  );
+}
+
+if (!HAS_CONVEX_BACKEND) {
+  console.warn(
+    "[rt-2-demo] VITE_CONVEX_URL is not set. Backend features will run in demo mode.",
+  );
+}
+
+createRoot(document.getElementById("root")!).render(<AppProviders />);
