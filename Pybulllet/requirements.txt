@@ -1,0 +1,21 @@
+# RT-2 PyBullet Simulation - Python Dependencies
+
+# Core Simulation
+pybullet>=3.2.5
+numpy>=1.24.0
+
+# Vision-Language Model (CLIP)
+torch>=2.0.0
+torchvision>=0.15.0
+ftfy>=6.1.0
+regex>=2023.0.0
+
+# CLIP library
+git+https://github.com/openai/CLIP.git
+
+# Image Processing
+Pillow>=9.5.0
+
+# Optional: For server integration (if you build a Flask backend)
+# flask>=2.3.0
+# flask-cors>=4.0.0

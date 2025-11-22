@@ -1,257 +1,360 @@
-## Overview
+# RT-2 Educational Platform 🤖
 
-This project uses the following tech stack:
-- Vite
-- Typescript
-- React Router v7 (all imports from `react-router` instead of `react-router-dom`)
-- React 19 (for frontend components)
-- Tailwind v4 (for styling)
-- Shadcn UI (for UI components library)
-- Lucide Icons (for icons)
-- Convex (for backend & database)
-- Convex Auth (for authentication)
-- Framer Motion (for animations)
-- Three js (for 3d models)
+> **An interactive web-based demonstration of RT-2 (Robotics Transformer 2) concepts combining PyBullet simulation with action tokenization visualization**
 
-All relevant files live in the 'src' directory.
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Python](https://img.shields.io/badge/python-3.8+-green.svg)
+![Node](https://img.shields.io/badge/node-18+-green.svg)
 
-Use pnpm for the package manager.
+## 📖 Project Overview
 
-## Setup
+This college project demonstrates the core concepts of **RT-2 (Robotics Transformer 2)** through two integrated components:
 
-This project is set up already and running on a cloud environment, as well as a convex development in the sandbox.
+1. **RT-2 Simulation Demo** - Real robot manipulation using PyBullet physics engine with natural language commands
+2. **Action Tokenization Visualizer** - Interactive tool showing how continuous robot actions are converted to discrete tokens
 
-## Environment Variables
+### 🎯 Educational Goals
 
-The project is set up with project specific CONVEX_DEPLOYMENT and VITE_CONVEX_URL environment variables on the client side.
+- Teach RT-2 concepts in robotics courses
+- Demonstrate vision-language-action models
+- Understand action tokenization and discretization
+- Learn robotic manipulation basics with IK control
+- Explore natural language robot interfaces
 
-The convex server has a separate set of environment variables that are accessible by the convex backend.
+---
 
-Currently, these variables include auth-specific keys: JWKS, JWT_PRIVATE_KEY, and SITE_URL.
+## ✨ Features
 
+### 🦾 RT-2 Simulation Demo
+- **Natural Language Commands**: Control robot using everyday language
+- **CLIP-based Vision Understanding**: Semantic matching for object identification
+- **PyBullet Physics Simulation**: Realistic robot manipulation with KUKA iiwa arm
+- **Real-time IK Control**: Inverse kinematics for smooth motion
+- **Pick-and-Place Operations**: Complete task execution with gripper control
 
-# Using Authentication (Important!)
+### 📊 Action Tokenization Visualizer
+- **Discrete Token Generation**: Convert continuous actions to tokens
+- **Visual Breakdown**: See how positions are discretized into bins
+- **RT-2 Action Format**: Generate 8D action vectors (terminate, x, y, z, roll, pitch, yaw, gripper)
+- **Interactive Sliders**: Adjust values and see token changes in real-time
+- **Precision Indicators**: Understand quantization effects
 
-You must follow these conventions when using authentication.
+---
 
-## Auth is already set up.
+## 🏗️ Tech Stack
 
-All convex authentication functions are already set up. The auth currently uses email OTP and anonymous users, but can support more.
+### Frontend
+- **React 19** - Modern UI components
+- **TypeScript** - Type-safe development
+- **Vite** - Fast build tool
+- **Tailwind CSS v4** - Utility-first styling
+- **Shadcn UI** - Beautiful component library
+- **Framer Motion** - Smooth animations
+- **Three.js** - 3D graphics (if needed)
 
-The email OTP configuration is defined in `src/convex/auth/emailOtp.ts`. DO NOT MODIFY THIS FILE.
+### Backend
+- **Convex** - Real-time database and backend
+- **Convex Auth** - Authentication system
 
-Also, DO NOT MODIFY THESE AUTH FILES: `src/convex/auth.config.ts` and `src/convex/auth.ts`.
+### Simulation (External)
+- **PyBullet** - Physics simulation engine
+- **CLIP (OpenAI)** - Vision-language model
+- **PyTorch** - Deep learning framework
+- **NumPy** - Numerical computations
 
-## Using Convex Auth on the backend
+---
 
-On the `src/convex/users.ts` file, you can use the `getCurrentUser` function to get the current user's data.
-
-## Using Convex Auth on the frontend
-
-The `/auth` page is already set up to use auth. Navigate to `/auth` for all log in / sign up sequences.
-
-You MUST use this hook to get user data. Never do this yourself without the hook:
-```typescript
-import { useAuth } from "@/hooks/use-auth";
-
-const { isLoading, isAuthenticated, user, signIn, signOut } = useAuth();
-```
-
-## Protected Routes
-
-When protecting a page, use the auth hooks to check for authentication and redirect to /auth.
-
-## Auth Page
-
-The auth page is defined in `src/pages/Auth.tsx`. Redirect authenticated pages and sign in / sign up to /auth.
-
-## Authorization
-
-You can perform authorization checks on the frontend and backend.
-
-On the frontend, you can use the `useAuth` hook to get the current user's data and authentication state.
-
-You should also be protecting queries, mutations, and actions at the base level, checking for authorization securely.
-
-## Adding a redirect after auth
-
-In `src/main.tsx`, you must add a redirect after auth URL to redirect to the correct dashboard/profile/page that should be created after authentication.
-
-# Frontend Conventions
-
-You will be using the Vite frontend with React 19, Tailwind v4, and Shadcn UI.
-
-Generally, pages should be in the `src/pages` folder, and components should be in the `src/components` folder.
-
-Shadcn primitives are located in the `src/components/ui` folder and should be used by default.
-
-## Page routing
-
-Your page component should go under the `src/pages` folder.
-
-When adding a page, update the react router configuration in `src/main.tsx` to include the new route you just added.
-
-## Shad CN conventions
-
-Follow these conventions when using Shad CN components, which you should use by default.
-- Remember to use "cursor-pointer" to make the element clickable
-- For title text, use the "tracking-tight font-bold" class to make the text more readable
-- Always make apps MOBILE RESPONSIVE. This is important
-- AVOID NESTED CARDS. Try and not to nest cards, borders, components, etc. Nested cards add clutter and make the app look messy.
-- AVOID SHADOWS. Avoid adding any shadows to components. stick with a thin border without the shadow.
-- Avoid skeletons; instead, use the loader2 component to show a spinning loading state when loading data.
-
-
-## Landing Pages
-
-You must always create good-looking designer-level styles to your application. 
-- Make it well animated and fit a certain "theme", ie neo brutalist, retro, neumorphism, glass morphism, etc
-
-Use known images and emojis from online.
-
-If the user is logged in already, show the get started button to say "Dashboard" or "Profile" instead to take them there.
-
-## Responsiveness and formatting
-
-Make sure pages are wrapped in a container to prevent the width stretching out on wide screens. Always make sure they are centered aligned and not off-center.
-
-Always make sure that your designs are mobile responsive. Verify the formatting to ensure it has correct max and min widths as well as mobile responsiveness.
-
-- Always create sidebars for protected dashboard pages and navigate between pages
-- Always create navbars for landing pages
-- On these bars, the created logo should be clickable and redirect to the index page
-
-## Animating with Framer Motion
-
-You must add animations to components using Framer Motion. It is already installed and configured in the project.
-
-To use it, import the `motion` component from `framer-motion` and use it to wrap the component you want to animate.
-
-
-### Other Items to animate
-- Fade in and Fade Out
-- Slide in and Slide Out animations
-- Rendering animations
-- Button clicks and UI elements
-
-Animate for all components, including on landing page and app pages.
-
-## Three JS Graphics
-
-Your app comes with three js by default. You can use it to create 3D graphics for landing pages, games, etc.
-
-
-## Colors
-
-You can override colors in: `src/index.css`
-
-This uses the oklch color format for tailwind v4.
-
-Always use these color variable names.
-
-Make sure all ui components are set up to be mobile responsive and compatible with both light and dark mode.
-
-Set theme using `dark` or `light` variables at the parent className.
-
-## Styling and Theming
-
-When changing the theme, always change the underlying theme of the shad cn components app-wide under `src/components/ui` and the colors in the index.css file.
-
-Avoid hardcoding in colors unless necessary for a use case, and properly implement themes through the underlying shad cn ui components.
-
-When styling, ensure buttons and clickable items have pointer-click on them (don't by default).
-
-Always follow a set theme style and ensure it is tuned to the user's liking.
-
-## Toasts
-
-You should always use toasts to display results to the user, such as confirmations, results, errors, etc.
-
-Use the shad cn Sonner component as the toaster. For example:
+## 📁 Project Structure
 
 ```
-import { toast } from "sonner"
+rt-2-demo/
+├── Pybulllet/                    # PyBullet simulation (runs externally)
+│   ├── Simullation.py           # Main simulation with CLIP integration
+│   └── requirements.txt          # Python dependencies
+├── src/
+│   ├── components/
+│   │   ├── SimulationDemo.tsx   # Simulation interface component
+│   │   ├── ActionTokenizer.tsx  # Action tokenization visualizer
+│   │   ├── tokenizer/           # Tokenizer sub-components
+│   │   └── ui/                  # Shadcn UI components
+│   ├── pages/
+│   │   ├── Landing.tsx          # Home page with hero section
+│   │   ├── Auth.tsx             # Authentication page
+│   │   └── NotFound.tsx         # 404 page
+│   ├── convex/                  # Convex backend functions
+│   ├── hooks/                   # React hooks
+│   └── lib/                     # Utility functions
+├── docs/                         # Documentation files
+│   ├── SETUP_GUIDE.md           # Detailed setup instructions
+│   ├── QUICK_START.md           # Quick start guide
+│   └── INTEGRATION_COMPLETE.md  # Integration documentation
+├── public/                       # Static assets
+├── package.json                  # Node.js dependencies
+└── pnpm-lock.yaml               # Lock file for pnpm
 
-import { Button } from "@/components/ui/button"
-export function SonnerDemo() {
-  return (
-    <Button
-      variant="outline"
-      onClick={() =>
-        toast("Event has been created", {
-          description: "Sunday, December 03, 2023 at 9:00 AM",
-          action: {
-            label: "Undo",
-            onClick: () => console.log("Undo"),
-          },
-        })
-      }
-    >
-      Show Toast
-    </Button>
-  )
-}
 ```
 
-Remember to import { toast } from "sonner". Usage: `toast("Event has been created.")`
+---
 
-## Dialogs
+## 🚀 Getting Started
 
-Always ensure your larger dialogs have a scroll in its content to ensure that its content fits the screen size. Make sure that the content is not cut off from the screen.
+### Prerequisites
 
-Ideally, instead of using a new page, use a Dialog instead. 
+- **Node.js** (v18 or higher)
+- **pnpm** package manager
+- **Python** (v3.8 or higher)
+- **Git**
 
-# Using the Convex backend
+### 📦 Installation
 
-You will be implementing the convex backend. Follow your knowledge of convex and the documentation to implement the backend.
+#### 1. Clone the Repository
 
-## The Convex Schema
-
-You must correctly follow the convex schema implementation.
-
-The schema is defined in `src/convex/schema.ts`.
-
-Do not include the `_id` and `_creationTime` fields in your queries (it is included by default for each table).
-Do not index `_creationTime` as it is indexed for you. Never have duplicate indexes.
-
-
-## Convex Actions: Using CRUD operations
-
-When running anything that involves external connections, you must use a convex action with "use node" at the top of the file.
-
-You cannot have queries or mutations in the same file as a "use node" action file. Thus, you must use pre-built queries and mutations in other files.
-
-You can also use the pre-installed internal crud functions for the database:
-
-```ts
-// in convex/users.ts
-import { crud } from "convex-helpers/server/crud";
-import schema from "./schema.ts";
-
-export const { create, read, update, destroy } = crud(schema, "users");
-
-// in some file, in an action:
-const user = await ctx.runQuery(internal.users.read, { id: userId });
-
-await ctx.runMutation(internal.users.update, {
-  id: userId,
-  patch: {
-    status: "inactive",
-  },
-});
+```powershell
+git clone https://github.com/IAMonlyParthGandhi/rt-2-demo.git
+cd rt-2-demo
 ```
 
+#### 2. Install Frontend Dependencies
 
-## Common Convex Mistakes To Avoid
+```powershell
+# Install pnpm if you don't have it
+npm install -g pnpm
 
-When using convex, make sure:
-- Document IDs are referenced as `_id` field, not `id`.
-- Document ID types are referenced as `Id<"TableName">`, not `string`.
-- Document object types are referenced as `Doc<"TableName">`.
-- Keep schemaValidation to false in the schema file.
-- You must correctly type your code so that it passes the type checker.
-- You must handle null / undefined cases of your convex queries for both frontend and backend, or else it will throw an error that your data could be null or undefined.
-- Always use the `@/folder` path, with `@/convex/folder/file.ts` syntax for importing convex files.
-- This includes importing generated files like `@/convex/_generated/server`, `@/convex/_generated/api`
-- Remember to import functions like useQuery, useMutation, useAction, etc. from `convex/react`
-- NEVER have return type validators.
+# Install project dependencies
+pnpm install
+```
+
+#### 3. Set Up Environment Variables
+
+Create a `.env.local` file in the root directory:
+
+```env
+# Convex Configuration
+VITE_CONVEX_URL=your_convex_url_here
+
+# Other environment variables as needed
+```
+
+#### 4. Start the Web Application
+
+```powershell
+# Start the development server
+pnpm dev
+```
+
+The application will be available at `http://localhost:5173` (or `5174` if 5173 is occupied).
+
+---
+
+## 🐍 PyBullet Simulation Setup
+
+⚠️ **Important Note**: The PyBullet simulation runs **externally** in a terminal, separate from the web application. This is because the backend integration encountered issues, so we run it manually.
+
+### Installation Steps
+
+1. **Navigate to PyBullet folder**
+
+```powershell
+cd Pybulllet
+```
+
+2. **Install Python dependencies**
+
+```powershell
+pip install -r requirements.txt
+```
+
+**Note**: PyBullet requires Visual C++ Build Tools on Windows. If installation fails:
+- Download [Microsoft C++ Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/)
+- Or use the provided `pybullet.whl` file:
+  ```powershell
+  pip install ..\pybullet.whl
+  ```
+
+3. **Run the Simulation**
+
+```powershell
+python Simullation.py
+```
+
+### 🎮 Using the Simulation
+
+Once running, you'll see a PyBullet GUI window with three colored cubes (red, green, blue) and a KUKA iiwa robot arm.
+
+**Example Commands:**
+```
+pick up the red cube and place it on the ground
+put the blue block on the green cube
+grab the red cube and place it on the table
+move the green cube to the blue cube
+```
+
+**How it works:**
+1. Enter a natural language command in the terminal
+2. CLIP processes the command and identifies objects
+3. The system generates:
+   - **Action Tokens** (discrete representation)
+   - **8D Action Vectors** (continuous control signals)
+4. Robot executes the pick-and-place operation
+5. See real-time feedback in the PyBullet GUI
+
+### 📝 Simulation Output
+
+The simulation displays:
+- **Visible Objects**: List of cubes and their positions
+- **CLIP Matching**: Which objects were identified from your command
+- **Action Tokens**: Discrete tokens like `ACTION_PICK POS_X_+2 POS_Y_-1 POS_Z_+3`
+- **8D Action Vectors**: Control signals for the robot (terminate, position, orientation, gripper)
+- **Execution Steps**: Progress through pick and place operations
+
+---
+
+## 🎨 Action Tokenizer Web Interface
+
+The web application includes an **Action Tokenization Visualizer** that demonstrates how RT-2 converts continuous robot actions to discrete tokens.
+
+### Features:
+- **Interactive Sliders**: Adjust X, Y, Z positions and rotation
+- **Token Display**: See real-time token generation
+- **Bin Visualization**: Understand discretization process
+- **Preset Positions**: Quick access to common poses
+- **8D Action Format**: View complete RT-2 action representation
+
+**Access**: Navigate to the tokenizer section in the web interface.
+
+---
+
+## 📚 Documentation
+
+Detailed documentation is available in the `docs/` folder:
+
+- **[SETUP_GUIDE.md](docs/SETUP_GUIDE.md)** - Complete setup instructions
+- **[QUICK_START.md](docs/QUICK_START.md)** - Quick start guide
+- **[INTEGRATION_COMPLETE.md](docs/INTEGRATION_COMPLETE.md)** - Technical integration details
+
+---
+
+## 🛠️ Development
+
+### Frontend Development
+
+```powershell
+pnpm dev          # Start dev server
+pnpm build        # Build for production
+pnpm preview      # Preview production build
+pnpm lint         # Run ESLint
+pnpm format       # Format code with Prettier
+```
+
+### Backend (Convex)
+
+The project uses Convex for backend services. Functions are defined in `src/convex/`.
+
+---
+
+## 🎓 Educational Use Cases
+
+This project is ideal for:
+
+1. **Robotics Courses**: Teaching manipulation and control
+2. **Machine Learning Classes**: Vision-language models
+3. **Computer Science Projects**: Full-stack development with robotics
+4. **Research Demonstrations**: RT-2 concepts and tokenization
+5. **Self-Learning**: Understanding modern robotic transformers
+
+---
+
+## 🔍 How It Works
+
+### RT-2 Pipeline
+
+```
+Natural Language → CLIP Encoding → Object Identification
+                                   ↓
+                            Action Planning
+                                   ↓
+                    ┌──────────────┴──────────────┐
+                    ↓                              ↓
+            Action Tokens              8D Action Vectors
+         (Discrete Representation)   (Continuous Control)
+                    ↓                              ↓
+            Visualization            PyBullet Execution
+```
+
+### Action Tokenization Process
+
+1. **Workspace Discretization**: 3D space divided into 11x11x11 bins
+2. **Position Encoding**: Each coordinate mapped to nearest bin
+3. **Token Generation**: Bin indices converted to tokens (e.g., `POS_X_+2`)
+4. **Action Sequence**: Complete actions like `ACTION_PICK POS_X_+2 POS_Y_-1 POS_Z_+3 ROT_YAW_0`
+
+---
+
+## 🐛 Troubleshooting
+
+### Common Issues
+
+**PyBullet won't install:**
+- Install Visual C++ Build Tools
+- Use provided `pybullet.whl` wheel file
+
+**CLIP model download fails:**
+- Ensure internet connection
+- Model downloads automatically on first run (~1.5GB)
+
+**Port conflicts:**
+- Vite will auto-select `5174` if `5173` is busy
+- Check terminal output for actual port
+
+**Simulation not responding:**
+- Ensure you're running `Simullation.py` in PyBullet folder
+- Check Python dependencies are installed
+- Verify CUDA/PyTorch installation if using GPU
+
+---
+
+## 👥 Team Structure
+
+This project was designed for a team of 5:
+
+- **Team A (2 people)**: Action tokenization visualizer (frontend)
+- **Team B (2 people)**: PyBullet simulation setup and CLIP integration
+- **Team C (1 person)**: Documentation, UI/UX, and presentation
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+---
+
+## 🙏 Acknowledgments
+
+- **RT-2 Paper**: [Robotics Transformer 2](https://robotics-transformer2.github.io/)
+- **OpenAI CLIP**: Vision-language model
+- **PyBullet**: Physics simulation engine
+- **Shadcn UI**: Beautiful component library
+
+---
+
+## 📧 Contact
+
+For questions or issues, please open an issue on GitHub or contact the project maintainer.
+
+---
+
+## 🎉 Show Your Faculty!
+
+This project demonstrates:
+✅ Modern web development practices
+✅ Machine learning integration
+✅ Real-time robotics simulation
+✅ Professional documentation
+✅ Scalable architecture
+
+**Perfect for college project presentations!** 🎓
+
+---
+
+**Made with ❤️ for robotics education**
