@@ -313,16 +313,6 @@ Natural Language → CLIP Encoding → Object Identification
 
 ---
 
-## 👥 Team Structure
-
-This project was designed for a team of 5:
-
-- **Team A (2 people)**: Action tokenization visualizer (frontend)
-- **Team B (2 people)**: PyBullet simulation setup and CLIP integration
-- **Team C (1 person)**: Documentation, UI/UX, and presentation
-
----
-
 ## 📄 License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
@@ -337,24 +327,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - **Shadcn UI**: Beautiful component library
 
 ---
-
-## 📧 Contact
-
-For questions or issues, please open an issue on GitHub or contact the project maintainer.
-
----
-
-## 🎉 Show Your Faculty!
-
-This project demonstrates:
-✅ Modern web development practices
-✅ Machine learning integration
-✅ Real-time robotics simulation
-✅ Professional documentation
-✅ Scalable architecture
-
-**Perfect for college project presentations!** 🎓
-
----
-
-**Made with ❤️ for robotics education**
+**Made with ❤️ BY IAMOnlyParthGandhi**
