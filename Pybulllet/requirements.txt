@@ -1,6 +1,7 @@
 # RT-2 PyBullet Simulation - Python Dependencies
 
 # Core Simulation
+# If pip install pybullet fails, use: pip install pybullet.whl (wheel file in this folder)
 pybullet>=3.2.5
 numpy>=1.24.0
 

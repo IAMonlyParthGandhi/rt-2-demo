@@ -32,15 +32,6 @@ const schema = defineSchema(
       role: v.optional(roleValidator), // role of the user. do not remove
     }).index("email", ["email"]), // index for the email. do not remove or modify
 
-    // Simulation sessions table
-    simulations: defineTable({
-      command: v.string(),
-      status: v.string(), // "pending", "running", "completed", "failed"
-      result: v.optional(v.string()),
-      userId: v.optional(v.id("users")),
-      timestamp: v.number(),
-    }).index("by_user", ["userId"]),
-
     // Tokenization examples table
     tokenization: defineTable({
       action: v.object({

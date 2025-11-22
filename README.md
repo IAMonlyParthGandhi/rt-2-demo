@@ -166,9 +166,9 @@ pip install -r requirements.txt
 
 **Note**: PyBullet requires Visual C++ Build Tools on Windows. If installation fails:
 - Download [Microsoft C++ Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/)
-- Or use the provided `pybullet.whl` file:
+- Or use the provided wheel file in the Pybulllet folder:
   ```powershell
-  pip install ..\pybullet.whl
+  pip install Pybulllet\pybullet.whl
   ```
 
 3. **Run the Simulation**
