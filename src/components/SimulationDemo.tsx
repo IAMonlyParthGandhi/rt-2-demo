@@ -24,7 +24,8 @@ export default function SimulationDemo() {
           <AlertCircle className="h-4 w-4" />
           <AlertTitle>PyBullet Simulation Runs Externally</AlertTitle>
           <AlertDescription>
-            The PyBullet simulation runs separately in a Python terminal. Follow the instructions below to run the simulation on your machine.
+            The PyBullet simulation runs separately in a Python terminal. Follow
+            the instructions below to run the simulation on your machine.
           </AlertDescription>
         </Alert>
 
@@ -38,8 +39,18 @@ export default function SimulationDemo() {
               <p className="font-semibold text-lg">Installation Steps:</p>
               <ol className="list-decimal list-inside space-y-2 text-sm">
                 <li>Navigate to the Pybulllet folder</li>
-                <li>Install dependencies: <code className="bg-muted px-2 py-1 rounded text-xs">pip install -r requirements.txt</code></li>
-                <li>Run the simulation: <code className="bg-muted px-2 py-1 rounded text-xs">python Simullation.py</code></li>
+                <li>
+                  Install dependencies:{" "}
+                  <code className="bg-muted px-2 py-1 rounded text-xs">
+                    pip install -r requirements.txt
+                  </code>
+                </li>
+                <li>
+                  Run the simulation:{" "}
+                  <code className="bg-muted px-2 py-1 rounded text-xs">
+                    python Simullation.py
+                  </code>
+                </li>
               </ol>
               <p className="font-semibold text-lg mt-6">Example Commands:</p>
               <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
@@ -50,7 +61,11 @@ export default function SimulationDemo() {
             </div>
             <div className="flex gap-3 justify-center">
               <Button variant="outline" asChild>
-                <a href="https://github.com/IAMonlyParthGandhi/rt-2-demo/blob/main/README.md#-pybullet-simulation-setup" target="_blank" rel="noopener noreferrer">
+                <a
+                  href="https://github.com/IAMonlyParthGandhi/rt-2-demo/blob/main/README.md#-pybullet-simulation-setup"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <ExternalLink className="h-4 w-4 mr-2" />
                   View Full Setup Guide
                 </a>
@@ -62,15 +77,29 @@ export default function SimulationDemo() {
         <div className="text-xs text-muted-foreground bg-muted/20 p-4 rounded-lg">
           <p className="font-medium mb-2">📝 What the simulation does:</p>
           <ul className="list-disc space-y-1 pl-4">
-            <li><strong>CLIP Vision-Language Model:</strong> Understands natural language commands and identifies objects</li>
-            <li><strong>Action Tokenization:</strong> Converts continuous actions to discrete tokens (RT-2 format)</li>
-            <li><strong>8D Action Vectors:</strong> Generates control signals (terminate, x, y, z, roll, pitch, yaw, gripper)</li>
-            <li><strong>IK Control:</strong> KUKA iiwa robot arm performs pick-and-place operations</li>
-            <li><strong>Real-time Feedback:</strong> See token generation and execution steps in terminal</li>
+            <li>
+              <strong>CLIP Vision-Language Model:</strong> Understands natural
+              language commands and identifies objects
+            </li>
+            <li>
+              <strong>Action Tokenization:</strong> Converts continuous actions
+              to discrete tokens (RT-2 format)
+            </li>
+            <li>
+              <strong>8D Action Vectors:</strong> Generates control signals
+              (terminate, x, y, z, roll, pitch, yaw, gripper)
+            </li>
+            <li>
+              <strong>IK Control:</strong> KUKA iiwa robot arm performs
+              pick-and-place operations
+            </li>
+            <li>
+              <strong>Real-time Feedback:</strong> See token generation and
+              execution steps in terminal
+            </li>
           </ul>
         </div>
       </Card>
     </motion.div>
   );
 }
-
